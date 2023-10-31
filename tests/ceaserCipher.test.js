@@ -12,11 +12,11 @@ test("Large number shift", () => {
   expect(ceasarCipher("abcd", 15)).toBe("pqrs");
 });
 test("Includes uppercase", () => {
-  expect(ceasarCipher("aBcD", 2)).toBe("cDeF");
+  expect(ceasarCipher("aBcD", 15)).toBe("pQrS");
 });
-test.skip("Includes symbols", () => {
-  expect(ceasarCipher("a")).toBe("Cdef");
+test("Includes symbols", () => {
+  expect(ceasarCipher("a!Bc&D", 15)).toBe("p!Qr&S");
 });
-test.skip("Wraps from z to a", () => {
-  expect(ceasarCipher("a")).toBe("Cdef");
+test("Wraps from z to a", () => {
+  expect(ceasarCipher("a!Bc&DxY%Z", 15)).toBe("p!Qr&SmN%O");
 });

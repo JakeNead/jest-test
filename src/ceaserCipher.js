@@ -32,15 +32,27 @@ function ceasarCipher(s, n) {
   let result = [];
   let arr = s.split("");
   for (let i = 0; i < arr.length; i += 1) {
-    let shiftIndex = alphabet.indexOf(arr[i].toLowerCase()) + n;
-    let isUpperCase = arr[i] === arr[i].toUpperCase();
-    if (isUpperCase) result.push(alphabet[shiftIndex].toUpperCase());
-    else result.push(alphabet[shiftIndex]);
+    addToResult(alphabet, result, arr, i, n);
   }
   return result.join("");
 }
 
-// if (!alphabet.includes(char))result.push(char)
+function addToResult(alphabet, result, arr, i, n) {
+  let shiftIndex = alphabet.indexOf(arr[i].toLowerCase()) + n;
+  let isUpperCase = arr[i] === arr[i].toUpperCase();
+  if (!alphabet.includes(arr[i].toLowerCase())) result.push(arr[i]);
+  else if (isUpperCase) {
+    while (shiftIndex > 25) {
+      shiftIndex -= 26;
+    }
+    result.push(alphabet[shiftIndex].toUpperCase());
+  } else {
+    while (shiftIndex > 25) {
+      shiftIndex -= 26;
+    }
+    result.push(alphabet[shiftIndex]);
+  }
+}
 
 module.exports = ceasarCipher;
 
